@@ -15,6 +15,8 @@ ECE197_Object_Detection_Iringan/drinks/..
 
 pip install -r requirements.txt
 
+pip install git+https://github.com/gautamchitnis/cocoapi.git@cocodataset-master#subdirectory=PythonAPI
+
 # How to use code
 
 <b> To train model run: </b>
