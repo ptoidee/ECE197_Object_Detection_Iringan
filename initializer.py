@@ -22,7 +22,6 @@ class ImageDataset(torch.utils.data.Dataset):
         # open the file as a PIL image
         img = Image.open(key).convert("RGB")
         # apply the necessary transforms
-        # transforms like crop, resize, normalize, etc
         box = []
         labeled = []
         for i in boxes:
@@ -43,7 +42,7 @@ class ImageDataset(torch.utils.data.Dataset):
         if self.transforms:
             img = self.transforms(img)
           
-        # return a list of images and corresponding labels
+        # return a list of images and corresponding target
         return img, targets
 
 def get_transform(train):
