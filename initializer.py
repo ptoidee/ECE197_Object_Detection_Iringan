@@ -58,7 +58,7 @@ def get_transform(train):
 
 def bounding_box_model(num_classes):
     # load an instance segmentation model pre-trained on COCO
-    model = torchvision.models.detection.fasterrcnn_mobilenet_v3_large_320_fpn(pretrained=True)
+    model = torchvision.models.detection.fasterrcnn_mobilenet_v3_large_320_fpn(pretrained=False)
     # get the number of input features for the classifier
     in_features = model.roi_heads.box_predictor.cls_score.in_features
     # replace the pre-trained head with a new one

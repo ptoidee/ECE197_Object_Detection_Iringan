@@ -1,4 +1,4 @@
-from initializer import ImageDataset,get_transform,bounding_box_model
+from initializer import ImageDataset,get_transform
 import torch
 import label_utils
 from engine import evaluate
