@@ -38,7 +38,7 @@ class ImageDataset(torch.utils.data.Dataset):
             ymin = i[2]
             ymax = i[3]
             box.append([xmin, ymin, xmax, ymax])
-            labeled.append(i[4])
+            labeled.append(int(i[4]))
 
         box = torch.as_tensor(box, dtype=torch.float32)
         targets = {}
@@ -70,6 +70,7 @@ def bounding_box_model(num_classes):
     in_features = model.roi_heads.box_predictor.cls_score.in_features
     # replace the pre-trained head with a new one
     model.roi_heads.box_predictor = FastRCNNPredictor(in_features, num_classes)
+
     return model
 
 def main():
@@ -79,6 +80,8 @@ def main():
 
     dataset = ImageDataset(train_dict, get_transform(train=True))
     dataset_test = ImageDataset(test_dict, get_transform(train=False))
+
+    dataset[0]
 
     train_dataloader = DataLoader(dataset, batch_size=8, shuffle=True, num_workers=2, collate_fn=utils.collate_fn)
     test_dataloader = DataLoader(dataset_test, batch_size=8, shuffle=True, num_workers=2, collate_fn=utils.collate_fn)
@@ -111,6 +114,8 @@ def main():
         lr_scheduler.step()
         # evaluate on the test dataset
         evaluate(model, test_dataloader, device=device)
+    
+    torch.save(model, 'model.pth')
 
 if __name__ == "__main__":
     main()
