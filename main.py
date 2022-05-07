@@ -9,7 +9,6 @@ from engine import train_one_epoch, evaluate
 import utils
 from torchvision.transforms import transforms as T
 from torch.utils.data import DataLoader
-import torchvision
 from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
 from torch.optim.lr_scheduler import StepLR
 
@@ -105,7 +104,7 @@ if __name__ == '__main__':
     lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=3, gamma=0.1)
 
     # let's train it for 10 epochs
-    num_epochs = 3
+    num_epochs = 1
 
     for epoch in range(num_epochs):
         # train for one epoch, printing every 10 iterations
